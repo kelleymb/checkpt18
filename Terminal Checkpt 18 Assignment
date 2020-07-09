@@ -1,0 +1,98 @@
+projects=# SELECT COUNT(e.id) FROM employee e JOIN department d ON e.department = d.id WHERE d.dept_name='Sales';
+ count 
+-------
+     4
+(1 row)
+
+projects=# SELECT
+projects-#   e.emp_name as Full_Name,
+projects-#   p.project_name as Project
+projects-# FROM
+projects-#   employee e
+projects-#   JOIN
+projects-#   employee_project ep
+projects-#   ON e.id = ep.emp_id
+projects-#   JOIN
+projects-#   project p
+projects-#   ON p.id = ep.project_id
+projects-# WHERE
+projects-#   p.project_name = 'Plan christmas party';
+    full_name    |       project        
+-----------------+----------------------
+ Toby Flenderson | Plan christmas party
+(1 row)
+
+projects=# select
+projects-#   e.emp_name as FULL_NAME,
+projects-#   p.project_name as PROJECT_NAME,
+projects-#   d.dept_name as DEPARTMENT
+projects-# from
+projects-#   employee e
+projects-#   join
+projects-#   employee_project ep 
+projects-#   on e.id = ep.emp_id
+projects-#   join 
+projects-#   project p
+projects-#   on p.id = ep.project_id
+projects-#   join
+projects-#   department d
+projects-#   on e.department = d.id
+projects-# where 
+projects-#   p.project_name = 'Plan christmas party'
+projects-#   and
+projects-#   d.dept_name = 'Warehouse';
+ full_name | project_name | department 
+-----------+--------------+------------
+(0 rows)
+
+projects=# select
+projects-#   e.emp_name as full_name,
+projects-#   d.dept_name as department,
+projects-#   p.project_name as project
+projects-# from
+projects-#   employee e
+projects-#   join
+projects-#   department d
+projects-#   on e.department = d.id
+projects-#   join
+projects-#   employee_project ep
+projects-#   on ep.emp_id = e.id
+projects-#   join
+projects-#   project p
+projects-#   on p.id = ep.project_id
+projects-# where
+projects-#   d.dept_name = 'Sales';
+   full_name    | department |     project     
+----------------+------------+-----------------
+ Michael Scott  | Sales      | Watch paint dry
+ Dwight Schrute | Sales      | Watch paint dry
+ Jim Halpert    | Sales      | Watch paint dry
+ Pam Beasley    | Sales      | Watch paint dry
+(4 rows)
+
+projects=# 
+projects=# select
+projects-#   e.emp_name as full_name,
+projects-#   d.dept_name as department_manager,
+projects-#   p.project_name as project
+projects-# from
+projects-#   employee e
+projects-#   join
+projects-#   department d
+projects-#   on e.department = d.id
+projects-#   join
+projects-#   employee_project ep
+projects-#   on ep.emp_id = e.id
+projects-#   join
+projects-#   project p
+projects-#   on ep.project_id = p.id
+projects-# where
+projects-#   p.project_name = 'Watch paint dry'
+projects-#   and
+projects-#   d.manager = e.id;
+  full_name  | department_manager |     project     
+-------------+--------------------+-----------------
+ Jim Halpert | Sales              | Watch paint dry
+(1 row)
+
+projects=# 
